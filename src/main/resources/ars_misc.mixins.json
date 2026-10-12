@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.arsmisc.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "SauceCriticalMixin",
+    "LivingTotemInvoker"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "LifeSenseGlowMixin",
+    "LifeSenseRenderMixin"
+  ]
+}

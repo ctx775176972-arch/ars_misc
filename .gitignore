@@ -1,0 +1,15 @@
+.gradle/
+build/
+run/
+.idea/
+.eclipse/
+*.iml
+.classpath
+.project
+.settings/
+
+# Local dependency binaries and machine-specific files
+libs/**/*.jar
+.DS_Store
+Thumbs.db
+*.log

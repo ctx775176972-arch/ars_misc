@@ -1,0 +1,20 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": false,
+  "pedestalItems": [
+    {
+      "item": "minecraft:clock"
+    },
+    {
+      "item": "ars_nouveau:source_gem"
+    }
+  ],
+  "reagent": {
+    "item": "ars_nouveau:enchanters_mirror"
+  },
+  "result": {
+    "count": 1,
+    "id": "ars_misc:enchanters_pocket_watch"
+  },
+  "sourceCost": 0
+}

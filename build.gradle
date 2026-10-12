@@ -1,0 +1,69 @@
+plugins {
+    id 'eclipse'
+    id 'net.neoforged.moddev' version '2.0.141'
+}
+
+group = 'dev.arsmisc'
+version = '0.0.1'
+base.archivesName = 'ars_misc'
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = '21.1.250'
+
+    runs {
+        client { client() }
+        server { server() }
+        configureEach {
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.INFO
+        }
+    }
+
+    mods {
+        ars_misc { sourceSet sourceSets.main }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+}
+
+tasks.named('jar', Jar).configure {
+    from('LICENSE')
+}
+
+repositories {
+    maven { url = uri('libs/maven') }
+}
+
+dependencies {
+    implementation files('libs/ars_nouveau-1.21.1-5.13.3.jar')
+    implementation files('libs/curios-neoforge-9.5.1+1.21.1.jar')
+    implementation files('libs/geckolib-neoforge-1.21.1-4.9.3.jar')
+    implementation('com.alexthw.sauce:sauce-1.21.1:0.0.62') { transitive = false }
+    jarJar('com.alexthw.sauce:sauce-1.21.1:0.0.62') {
+        version { strictly '[0.0.62]'; prefer '0.0.62' }
+        transitive = false
+    }
+}
+
+sourceSets {
+    gametest {
+        compileClasspath += sourceSets.main.output + sourceSets.main.compileClasspath
+        runtimeClasspath += sourceSets.main.output + sourceSets.main.runtimeClasspath
+    }
+}
+neoForge {
+    mods {
+        ars_misc { sourceSet sourceSets.gametest }
+    }
+    runs {
+        gameTestServer {
+            type = 'gameTestServer'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'ars_misc,neoforge'
+        }
+    }
+}

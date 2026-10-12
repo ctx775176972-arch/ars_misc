@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "ars_nouveau:mob_effect/hex",
+      "sprite": "ars_misc:decay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "ars_nouveau:mob_effect/magic_find",
+      "sprite": "ars_misc:life_sense"
+    }
+  ]
+}
