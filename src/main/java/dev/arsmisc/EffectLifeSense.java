@@ -33,7 +33,12 @@ public final class EffectLifeSense extends AbstractEffect implements IPotionEffe
     }
     @Override public int getBaseDuration() { return POTION_TIME == null ? 60 : POTION_TIME.get(); }
     @Override public int getExtendTimeDuration() { return EXTEND_TIME == null ? 15 : EXTEND_TIME.get(); }
+    @Override public void addAugmentDescriptions(java.util.Map<AbstractAugment, String> descriptions) {
+        super.addAugmentDescriptions(descriptions);
+        descriptions.put(AugmentExtendTime.INSTANCE, "Extends the duration of Life Sense.");
+        descriptions.put(AugmentDurationDown.INSTANCE, "Reduces the duration of Life Sense.");
+    }
     @Override public String getBookDescription() {
-        return "Grants Life Sense. The recipient sees living creatures within 75 blocks outlined through walls. Only loaded and tracked entities are visible. Extend Time and Duration Down modify the duration.";
+        return "Grants awareness of nearby living creatures, revealing their outlines through walls.";
     }
 }

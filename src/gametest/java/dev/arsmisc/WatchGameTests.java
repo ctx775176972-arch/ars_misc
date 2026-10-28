@@ -50,11 +50,11 @@ public final class WatchGameTests {
         mana.setMaxMana(1000);
         mana.setMana(0);
         player.tickCount=0;
-        item.curioTick(new SlotContext("charm",player,0,false,true),stack);
+        item.curioTick(new SlotContext("casting_device",player,0,false,true),stack);
         h.assertTrue(!player.hasEffect(ArsMiscMod.LIFE_SENSE),"Watch cast without player mana");
         // A failed cast still respects the original watch's configured schedule.
         mana.setMana(100);
-        item.curioTick(new SlotContext("charm",player,0,false,true),stack);
+        item.curioTick(new SlotContext("casting_device",player,0,false,true),stack);
         h.assertTrue(!player.hasEffect(ArsMiscMod.LIFE_SENSE),"Failed cast was queued immediately");
         var funded=h.makeMockPlayer(net.minecraft.world.level.GameType.SURVIVAL);
         var fundedMana=CapabilityRegistry.getMana(funded);
@@ -62,7 +62,7 @@ public final class WatchGameTests {
         fundedMana.setMana(100);
         double before=fundedMana.getCurrentMana();
         funded.tickCount=0;
-        item.curioTick(new SlotContext("charm",funded,0,false,true),watch());
+        item.curioTick(new SlotContext("casting_device",funded,0,false,true),watch());
         h.assertTrue(funded.hasEffect(ArsMiscMod.LIFE_SENSE) && CapabilityRegistry.getMana(funded).getCurrentMana()<before,"Funded cast: effect=" + funded.hasEffect(ArsMiscMod.LIFE_SENSE) + ", mana=" + CapabilityRegistry.getMana(funded).getCurrentMana() + ", before=" + before);
         h.succeed();
     }
@@ -73,7 +73,7 @@ public final class WatchGameTests {
         var item=ArsMiscMod.ENCHANTERS_POCKET_WATCH.get();
         var stack=watch();
         entity.tickCount=0;
-        var slot=new SlotContext("charm",entity,0,false,true);
+        var slot=new SlotContext("casting_device",entity,0,false,true);
         item.curioTick(slot,stack);
         h.assertTrue(entity.hasEffect(ArsMiscMod.LIFE_SENSE),"Nonplayer casting did not affect real wearer");
         entity.removeEffect(ArsMiscMod.LIFE_SENSE);
@@ -83,7 +83,7 @@ public final class WatchGameTests {
         paused.tickCount=0;
         var disabled=watch();
         EnchantersPocketWatchItem.setEnabled(disabled,false);
-        item.curioTick(new SlotContext("charm",paused,0,false,true),disabled);
+        item.curioTick(new SlotContext("casting_device",paused,0,false,true),disabled);
         h.assertTrue(!paused.hasEffect(ArsMiscMod.LIFE_SENSE),"Disabled watch cast");
         h.succeed();
     }

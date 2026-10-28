@@ -19,9 +19,23 @@ public final class MiningRingItem extends ArsNouveauCurio {
     }
     @Override public boolean isFoil(ItemStack stack) { return true; }
     @Override public boolean canEquip(SlotContext context, ItemStack stack) { return context.identifier().equals("ring"); }
+    public static boolean rangeEnabled(ItemStack stack) {
+        var data = stack.getOrDefault(net.minecraft.core.component.DataComponents.CUSTOM_DATA,
+                net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
+        return !data.getBoolean("mining_range_disabled");
+    }
+    public static void setRangeEnabled(ItemStack stack, boolean enabled) {
+        net.minecraft.world.item.component.CustomData.update(net.minecraft.core.component.DataComponents.CUSTOM_DATA,
+                stack, data -> data.putBoolean("mining_range_disabled", !enabled));
+    }
     @Override public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> lines, TooltipFlag flag) {
         super.appendHoverText(stack, context, lines, flag);
         if (series == Series.FORTUNE) lines.add(Component.translatable("tooltip.ars_misc.mining_fortune", tier * 2).withStyle(ChatFormatting.GRAY));
-        else lines.add(Component.translatable("tooltip.ars_misc.mining_blasting_" + tier).withStyle(ChatFormatting.GRAY));
+        else {
+            lines.add(Component.translatable(rangeEnabled(stack) ? "tooltip.ars_misc.mining_blasting_" + tier
+                    : "tooltip.ars_misc.mining_blasting_single", tier).withStyle(ChatFormatting.GRAY));
+            lines.add(Component.translatable("tooltip.ars_misc.mining_range." + (rangeEnabled(stack) ? "enabled" : "disabled"))
+                    .withStyle(ChatFormatting.BLUE));
+        }
     }
 }

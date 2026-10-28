@@ -1,0 +1,12 @@
+{
+  "type": "ars_nouveau:glyph",
+  "exp": 55,
+  "inputs": [
+    {"tag": "sauce:anima_essence"},
+    {"item": "minecraft:nether_star"},
+    {"item": "minecraft:poisonous_potato"},
+    {"item": "minecraft:pufferfish"},
+    {"item": "minecraft:spider_eye"}
+  ],
+  "output": {"count": 1, "id": "ars_misc:glyph_decay"}
+}

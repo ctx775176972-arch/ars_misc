@@ -1,0 +1,6 @@
+{
+  "type": "ars_misc:wand_conversion",
+  "category": "equipment",
+  "ingredients": [{"item": "ars_nouveau:wand"}],
+  "result": {"id": "ars_misc:combat_wand", "count": 1}
+}

@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_crystal_shield",
+  "name": "item.ars_misc.glyph_crystal_shield",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_crystal_shield",
+      "text": "ars_misc.glyph_desc.glyph_crystal_shield"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_crystal_shield.recipe"
+    }
+  ]
+}

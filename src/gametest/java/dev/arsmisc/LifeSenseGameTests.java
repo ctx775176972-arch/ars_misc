@@ -15,6 +15,21 @@ import net.neoforged.neoforge.gametest.*;
 @PrefixGameTestTemplate(false)
 public final class LifeSenseGameTests {
     @GameTest(template="empty", templateNamespace="ars_misc")
+    public static void lifeSenseScribingRecipeUsesRequestedMaterials(GameTestHelper h) {
+        var id=net.minecraft.resources.ResourceLocation.parse("ars_misc:glyph_life_sense");
+        var holder=h.getLevel().getRecipeManager().byKey(id).orElseThrow();
+        h.assertTrue(holder.value() instanceof com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe,"Life Sense is not a scribing recipe");
+        var recipe=(com.hollingsworth.arsnouveau.common.crafting.recipes.GlyphRecipe)holder.value();
+        h.assertTrue(recipe.getOutput().is(EffectLifeSense.INSTANCE.getGlyph()) && recipe.getInputs().size()==8,"Wrong Life Sense output or ingredient count");
+        for(var item:java.util.List.of("ars_nouveau:dowsing_rod","ars_nouveau:starbuncle_shards","ars_nouveau:abjuration_essence")) {
+            var stack=BuiltInRegistries.ITEM.get(net.minecraft.resources.ResourceLocation.parse(item)).getDefaultInstance();
+            h.assertTrue(!stack.isEmpty() && recipe.getInputs().stream().filter(i->i.test(stack)).count()==1,"Wrong ingredient: "+item);
+        }
+        h.assertTrue(recipe.getInputs().stream().filter(i->i.test(net.minecraft.world.item.Items.SPECTRAL_ARROW.getDefaultInstance())).count()==5,"Life Sense needs five Spectral Arrows");
+        h.succeed();
+    }
+
+    @GameTest(template="empty", templateNamespace="ars_misc")
     public static void glyphRegistrationAndDuration(GameTestHelper helper) {
         var glyph=EffectLifeSense.INSTANCE;
         helper.assertTrue(GlyphRegistry.getSpellPart(glyph.getRegistryName())==glyph,"Glyph missing from Ars registry");
@@ -29,7 +44,16 @@ public final class LifeSenseGameTests {
         var extended = new SpellStats.Builder().addAugment(AugmentExtendTime.INSTANCE);
         AugmentExtendTime.INSTANCE.applyModifiers(extended,glyph,new EntityHitResult(player),helper.getLevel(),player,context);
         glyph.onResolveEntity(new EntityHitResult(player),helper.getLevel(),player,extended.build(),context,new SpellResolver(context));
-        helper.assertTrue(player.getEffect(ArsMiscMod.LIFE_SENSE).getDuration()>1200,"Extend Time did not extend duration");
+        helper.assertTrue(player.getEffect(ArsMiscMod.LIFE_SENSE).getDuration()==1500,"Extend Time did not add 15 seconds");
+        player.removeEffect(ArsMiscMod.LIFE_SENSE);
+        var shorten=com.hollingsworth.arsnouveau.common.spell.augment.AugmentDurationDown.INSTANCE;
+        var shortened=new SpellStats.Builder().addAugment(shorten);
+        shorten.applyModifiers(shortened,glyph,new EntityHitResult(player),helper.getLevel(),player,context);
+        glyph.onResolveEntity(new EntityHitResult(player),helper.getLevel(),player,shortened.build(),context,new SpellResolver(context));
+        helper.assertTrue(player.getEffect(ArsMiscMod.LIFE_SENSE).getDuration()==900,"Duration Down did not remove 15 seconds");
+        var descriptions=new java.util.HashMap<com.hollingsworth.arsnouveau.api.spell.AbstractAugment,String>();
+        glyph.addAugmentDescriptions(descriptions);
+        helper.assertTrue(descriptions.containsKey(AugmentExtendTime.INSTANCE) && descriptions.containsKey(shorten),"Duration descriptions are missing");
         helper.succeed();
     }
 

@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_threads",
+  "icon": "ars_misc:thread_resilient",
+  "name": "item.ars_misc.thread_resilient",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:thread_resilient",
+      "text": "ars_misc.perk_desc.thread_resilient"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:thread_resilient"
+    }
+  ]
+}

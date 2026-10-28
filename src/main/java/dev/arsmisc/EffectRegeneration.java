@@ -22,7 +22,8 @@ public final class EffectRegeneration extends AbstractEffect implements IPotionE
     @Override public void onResolveEntity(EntityHitResult hit, Level world, LivingEntity caster,
             SpellStats stats, SpellContext context, SpellResolver resolver) {
         if (!world.isClientSide && hit.getEntity() instanceof LivingEntity living && living.isAlive()) {
-            int amplifier = Math.clamp(stats.getBuffCount(AugmentAmplify.INSTANCE), 0, 4);
+            int amplifier = Math.clamp(stats.getBuffCount(AugmentAmplify.INSTANCE), 0,
+                    caster != null && PaladinFocusEvents.equipped(caster) ? 2 : 1);
             int duration = Math.max(1, getBaseDuration() * 20 + getExtendTimeDuration() * stats.getDurationInTicks());
             living.addEffect(new MobEffectInstance(MobEffects.REGENERATION, duration, amplifier));
         }
@@ -34,20 +35,26 @@ public final class EffectRegeneration extends AbstractEffect implements IPotionE
     }
     @Override public int getAugmentLimit(ResourceLocation augment) {
         int configured = super.getAugmentLimit(augment);
-        return augment.equals(AugmentAmplify.INSTANCE.getRegistryName()) ? Math.min(4, configured) : configured;
+        return augment.equals(AugmentAmplify.INSTANCE.getRegistryName()) ? Math.min(1, configured) : configured;
     }
     @Override protected void addDefaultAugmentLimits(Map<ResourceLocation, Integer> limits) {
-        limits.put(AugmentAmplify.INSTANCE.getRegistryName(), 4);
+        limits.put(AugmentAmplify.INSTANCE.getRegistryName(), 1);
     }
     @Override public Set<SpellSchool> getSchools() { return setOf(SpellSchools.ABJURATION); }
     @Override public void buildConfig(ModConfigSpec.Builder builder) {
         super.buildConfig(builder);
-        addPotionConfig(builder, 10);
+        addPotionConfig(builder, 20);
         addExtendTimeConfig(builder, 5);
     }
-    @Override public int getBaseDuration() { return POTION_TIME == null ? 10 : POTION_TIME.get(); }
+    @Override public int getBaseDuration() { return POTION_TIME == null ? 20 : POTION_TIME.get(); }
     @Override public int getExtendTimeDuration() { return EXTEND_TIME == null ? 5 : EXTEND_TIME.get(); }
+    @Override public void addAugmentDescriptions(Map<AbstractAugment, String> descriptions) {
+        super.addAugmentDescriptions(descriptions);
+        descriptions.put(AugmentAmplify.INSTANCE, "Raises the level of Regeneration. Focus of Paladin can raise it further.");
+        descriptions.put(AugmentExtendTime.INSTANCE, "Extends the duration of Regeneration.");
+        descriptions.put(AugmentDurationDown.INSTANCE, "Reduces the duration of Regeneration.");
+    }
     @Override public String getBookDescription() {
-        return "Grants vanilla Regeneration I for 10 seconds. Each Amplify increases the level by one, up to Regeneration V. Extend Time and Duration Down modify duration. Healing can be reversed by Decay.";
+        return "Grants Regeneration to the target.";
     }
 }

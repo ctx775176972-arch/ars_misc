@@ -1,0 +1,19 @@
+{
+  "type": "ars_misc:sword_upgrade",
+  "reagent": {
+    "item": "ars_nouveau:enchanters_sword"
+  },
+  "result": {
+    "id": "ars_misc:netherite_enchanters_sword",
+    "count": 1
+  },
+  "sourceCost": 0,
+  "pedestalItems": [
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+  ]
+}

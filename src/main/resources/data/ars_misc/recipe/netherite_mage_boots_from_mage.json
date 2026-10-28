@@ -1,0 +1,28 @@
+{
+  "type": "ars_misc:mage_armor_upgrade",
+  "result": {
+    "count": 1,
+    "id": "ars_misc:netherite_mage_boots"
+  },
+  "sourceCost": 0,
+  "reagent": [
+    {
+      "item": "ars_nouveau:arcanist_boots"
+    },
+    {
+      "item": "ars_nouveau:sorcerer_boots"
+    },
+    {
+      "item": "ars_nouveau:battlemage_boots"
+    }
+  ],
+  "requiresMageTierThree": true,
+  "pedestalItems": [
+    {
+      "item": "minecraft:netherite_ingot"
+    },
+    {
+      "item": "minecraft:netherite_upgrade_smithing_template"
+    }
+  ]
+}

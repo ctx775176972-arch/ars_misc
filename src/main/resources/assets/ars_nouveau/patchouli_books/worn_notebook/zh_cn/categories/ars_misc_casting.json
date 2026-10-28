@@ -1,0 +1,7 @@
+{
+  "name": "documentation.ars_misc.category.casting",
+  "description": "",
+  "icon": "ars_misc:enchanters_pocket_watch",
+  "sortnum": 100,
+  "parent": "ars_nouveau:equipment"
+}

@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_avada_kedavra",
+  "name": "item.ars_misc.glyph_avada_kedavra",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_avada_kedavra",
+      "text": "ars_misc.glyph_desc.glyph_avada_kedavra"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_avada_kedavra.recipe"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": false,
+  "pedestalItems": [
+    { "item": "minecraft:tnt" },
+    { "item": "minecraft:tnt" },
+    { "item": "minecraft:diamond" },
+    { "item": "minecraft:diamond" },
+    { "item": "ars_nouveau:source_gem_block" },
+    { "item": "ars_nouveau:source_gem_block" },
+    { "item": "minecraft:ender_pearl" },
+    { "item": "minecraft:ender_pearl" }
+  ],
+  "reagent": { "item": "minecraft:clock" },
+  "result": {
+    "count": 1,
+    "id": "ars_misc:enchanters_field"
+  },
+  "sourceCost": 0
+}

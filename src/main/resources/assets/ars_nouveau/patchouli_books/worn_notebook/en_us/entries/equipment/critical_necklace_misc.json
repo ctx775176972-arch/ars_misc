@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_items",
+  "icon": "ars_misc:critical_necklace",
+  "name": "item.ars_misc.critical_necklace",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:critical_necklace",
+      "text": "documentation.ars_misc.critical_necklace.summary"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:critical_necklace"
+    }
+  ]
+}

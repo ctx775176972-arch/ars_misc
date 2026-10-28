@@ -22,6 +22,52 @@ import top.theillusivec4.curios.api.CuriosApi;
 @GameTestHolder("ars_misc") @PrefixGameTestTemplate(false)
 public final class TieredMiningGameTests {
     @GameTest(template="empty", templateNamespace="ars_misc")
+    public static void rangeTogglePreservesAmplifyFortuneAndWrittenAugments(GameTestHelper helper) {
+        var player=helper.makeMockPlayer(GameType.SURVIVAL);
+        var inventory=CuriosApi.getCuriosInventory(player).orElseThrow();
+        var spell=new Spell(MethodTouch.INSTANCE,EffectBreak.INSTANCE);
+        var context=SpellContext.fromEntity(spell,player,ItemStack.EMPTY);
+        var origin=helper.absolutePos(new BlockPos(2,2,2));
+        var hit=new BlockHitResult(Vec3.atCenterOf(origin),Direction.UP,origin,false);
+        var fortune=ArsMiscMod.FORTUNE_RING.get().getDefaultInstance();
+        inventory.setEquippedCurio("ring",1,fortune);
+        for(int tier=1;tier<=2;tier++) {
+            var ring=ArsMiscMod.BLASTING_STAGES.get(tier-1).get().getDefaultInstance();
+            player.setItemInHand(net.minecraft.world.InteractionHand.MAIN_HAND,ring);
+            inventory.setEquippedCurio("ring",0,ItemStack.EMPTY);
+            helper.assertTrue(!dev.arsmisc.network.ToggleMiningRangePayload.toggle(player),"Held ring was toggled");
+            inventory.setEquippedCurio("ring",0,ring);
+            helper.assertTrue(MiningRingItem.rangeEnabled(ring),"New ring did not default to area mining");
+            dev.arsmisc.network.ToggleMiningRangePayload.toggle(player);
+            helper.assertTrue(!MiningRingItem.rangeEnabled(ring.copy()),"Disabled range state was not stored on ring");
+            var single=new SpellStats.Builder().build(EffectBreak.INSTANCE,hit,helper.getLevel(),player,context);
+            helper.assertTrue(single.getAmpMultiplier()==tier && single.getBuffCount(AugmentFortune.INSTANCE)==2,
+                    "Range toggle removed Amplify or Fortune");
+            helper.assertTrue(SpellUtil.calcAOEBlocks(player,origin,hit,single).size()==1,"Disabled range still expanded mining");
+            helper.getLevel().setBlockAndUpdate(origin,Blocks.OBSIDIAN.defaultBlockState());
+            EffectBreak.INSTANCE.onResolveBlock(hit,helper.getLevel(),player,single,context,new SpellResolver(context));
+            helper.assertTrue(helper.getLevel().getBlockState(origin).isAir(),"Disabled range lost obsidian mining strength");
+            var written=new SpellStats.Builder()
+                    .addAugment(com.hollingsworth.arsnouveau.common.spell.augment.AugmentAOE.INSTANCE)
+                    .addAugment(com.hollingsworth.arsnouveau.common.spell.augment.AugmentPierce.INSTANCE)
+                    .build(EffectBreak.INSTANCE,hit,helper.getLevel(),player,context);
+            helper.assertTrue(written.getBuffCount(com.hollingsworth.arsnouveau.common.spell.augment.AugmentAOE.INSTANCE)==1
+                    && written.getBuffCount(com.hollingsworth.arsnouveau.common.spell.augment.AugmentPierce.INSTANCE)==1,
+                    "Range toggle removed manually written augments");
+            inventory.setSlotActive("ring",0,false);
+            helper.assertTrue(!dev.arsmisc.network.ToggleMiningRangePayload.toggle(player)
+                    && !MiningRingItem.rangeEnabled(ring),"Inactive ring was toggled");
+            inventory.setSlotActive("ring",0,true);
+            dev.arsmisc.network.ToggleMiningRangePayload.toggle(player);
+            var area=new SpellStats.Builder().build(EffectBreak.INSTANCE,hit,helper.getLevel(),player,context);
+            helper.assertTrue(SpellUtil.calcAOEBlocks(player,origin,hit,area).size()==(tier==1?9:27),
+                    "Re-enabled area did not restore its original size");
+        }
+        helper.assertTrue(spell.unsafeList().size()==2,"Toggle edited the saved spell");
+        helper.succeed();
+    }
+
+    @GameTest(template="empty", templateNamespace="ars_misc")
     public static void miningRecipesLoadAndCostNoSource(GameTestHelper helper) {
         String[] ids = {"fortune_ring", "fortune_ring_2", "blasting_miner_ring_1", "blasting_miner_ring_2"};
         String[] reagents = {"ars_nouveau:ring_of_potential", "ars_misc:fortune_ring", "ars_nouveau:ring_of_potential", "ars_misc:blasting_miner_ring_1"};

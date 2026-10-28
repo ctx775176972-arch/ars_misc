@@ -1,0 +1,24 @@
+{
+  "category": "ars_nouveau:ars_misc_items",
+  "icon": "ars_misc:paladin_focus",
+  "name": "item.ars_misc.paladin_focus",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:paladin_focus",
+      "text": "documentation.ars_misc.paladin_focus.summary"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.paladin_focus.protection"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.paladin_focus.dispel"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:paladin_focus"
+    }
+  ]
+}

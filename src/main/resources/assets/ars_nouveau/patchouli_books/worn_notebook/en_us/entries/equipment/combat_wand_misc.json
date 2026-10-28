@@ -1,0 +1,20 @@
+{
+  "category": "ars_nouveau:ars_misc_casting",
+  "icon": "ars_misc:combat_wand",
+  "name": "item.ars_misc.combat_wand",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:combat_wand",
+      "text": "documentation.ars_misc.combat_wand.summary"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ars_misc:combat_wand"
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "ars_misc:restore_enchanters_wand"
+    }
+  ]
+}

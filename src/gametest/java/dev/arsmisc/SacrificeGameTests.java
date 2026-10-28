@@ -74,12 +74,12 @@ public final class SacrificeGameTests {
     @GameTest(template="empty", templateNamespace="ars_misc")
     public static void regenerationLevelsAndShieldExtension(GameTestHelper h) {
         var target=h.spawnWithNoFreeWill(EntityType.COW,1,2,1);
-        h.assertTrue(EffectRegeneration.INSTANCE.getAugmentLimit(AugmentAmplify.INSTANCE.getRegistryName())==4,"Regen cap incorrect");
+        h.assertTrue(EffectRegeneration.INSTANCE.getAugmentLimit(AugmentAmplify.INSTANCE.getRegistryName())==1,"Regen cap incorrect");
         for (int i=0; i<=5; i++) {
             target.removeEffect(MobEffects.REGENERATION);
             cast(h,EffectRegeneration.INSTANCE,target,target,stats(i));
             var effect=target.getEffect(MobEffects.REGENERATION);
-            h.assertTrue(effect.getAmplifier()==Math.min(i,4) && effect.getDuration()==200,"Regen level/cap incorrect");
+            h.assertTrue(effect.getAmplifier()==Math.min(i,1) && effect.getDuration()==400,"Regen level/cap incorrect");
         }
         var glyph=EffectSacrificialShield.INSTANCE;
         var context=SpellContext.fromEntity(new Spell(MethodSelf.INSTANCE,glyph),target,ItemStack.EMPTY);

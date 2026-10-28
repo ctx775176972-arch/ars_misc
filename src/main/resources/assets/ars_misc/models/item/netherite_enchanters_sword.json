@@ -1,0 +1,6 @@
+{
+  "parent": "ars_nouveau:item/enchanters_sword",
+  "textures": {
+    "particle": "ars_nouveau:item/enchanters_sword"
+  }
+}

@@ -13,3 +13,6 @@ libs/**/*.jar
 .DS_Store
 Thumbs.db
 *.log
+
+# Local references, extracted dependencies, previews, and investigation files
+/work/

@@ -1,0 +1,6 @@
+{
+  "size": 1,
+  "order": 100,
+  "icon": "curios:slot/empty_curio_slot",
+  "validators": ["ars_misc:spellbook", "curios:tag"]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "documentation.ars_misc.category.threads",
+  "description": "",
+  "icon": "ars_misc:thread_sturdy",
+  "sortnum": 100,
+  "parent": "ars_nouveau:equipment"
+}

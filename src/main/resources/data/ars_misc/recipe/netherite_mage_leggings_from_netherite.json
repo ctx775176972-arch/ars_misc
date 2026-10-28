@@ -1,0 +1,31 @@
+{
+  "type": "ars_misc:mage_armor_upgrade",
+  "result": {
+    "count": 1,
+    "id": "ars_misc:netherite_mage_leggings"
+  },
+  "sourceCost": 0,
+  "reagent": {
+    "item": "minecraft:netherite_leggings"
+  },
+  "pedestalItems": [
+    {
+      "item": "ars_nouveau:magebloom_block"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:blaze_rod"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "minecraft:ender_pearl"
+    },
+    {
+      "item": "minecraft:chorus_fruit"
+    }
+  ]
+}

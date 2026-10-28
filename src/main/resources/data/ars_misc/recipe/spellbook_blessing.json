@@ -1,0 +1,14 @@
+{
+  "type": "ars_misc:spellbook_blessing",
+  "sourceCost": 0,
+  "pedestalItems": [
+    {"item": "ars_nouveau:wilden_tribute"},
+    {"item": "minecraft:beacon"},
+    {"item": "minecraft:dragon_head"},
+    {"item": "minecraft:echo_shard"},
+    {"item": "minecraft:netherite_block"},
+    {"item": "minecraft:totem_of_undying"},
+    {"item": "minecraft:heavy_core"},
+    {"item": "minecraft:conduit"}
+  ]
+}

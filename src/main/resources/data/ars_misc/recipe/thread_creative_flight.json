@@ -1,0 +1,23 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": false,
+  "pedestalItems": [
+    {
+      "item": "minecraft:phantom_membrane"
+    },
+    {
+      "item": "minecraft:fermented_spider_eye"
+    },
+    {
+      "item": "minecraft:popped_chorus_fruit"
+    }
+  ],
+  "reagent": {
+    "item": "ars_nouveau:thread_gliding"
+  },
+  "result": {
+    "count": 1,
+    "id": "ars_misc:thread_creative_flight"
+  },
+  "sourceCost": 0
+}

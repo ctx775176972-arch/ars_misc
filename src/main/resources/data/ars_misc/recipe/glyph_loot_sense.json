@@ -1,0 +1,34 @@
+{
+  "type": "ars_nouveau:glyph",
+  "exp": 55,
+  "inputs": [
+    {
+      "item": "ars_nouveau:dowsing_rod"
+    },
+    {
+      "item": "ars_nouveau:starbuncle_shards"
+    },
+    {
+      "item": "ars_nouveau:abjuration_essence"
+    },
+    {
+      "tag": "c:chests"
+    },
+    {
+      "tag": "c:chests"
+    },
+    {
+      "tag": "c:chests"
+    },
+    {
+      "tag": "c:chests"
+    },
+    {
+      "tag": "c:chests"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "ars_misc:glyph_loot_sense"
+  }
+}

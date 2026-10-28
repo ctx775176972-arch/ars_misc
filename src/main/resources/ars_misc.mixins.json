@@ -5,13 +5,42 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "SauceCriticalMixin",
-    "LivingTotemInvoker"
+    "LivingTotemInvoker",
+    "FinalBarrierDeathMixin",
+    "EffectBreakLootMixin",
+    "SpellHarvestBreakerMixin",
+    "SpellHarvestEffectsMixin",
+    "SpellHarvestCuriosMixin",
+    "SpellBlockLootMixin",
+    "EquippedBookSaveMixin",
+    "EquippedBookScribingMixin",
+    "EquippedBookTableMixin",
+    "EquippedBookQuickCastMixin",
+    "EquippedBookSlotMixin",
+    "ReactiveShieldBlockMixin",
+    "ReactiveShieldLeftClickMixin",
+    "MobJarInteractionMixin",
+    "EffectCutShieldMixin",
+    "SpellParchmentLootMixin",
+    "LecternBookValidityMixin",
+    "PlayerTouchTargetingMixin",
+    "SpellDamageBeltMixin",
+    "AvadaKedavraTotemMixin",
+    "ManaAttributeLimitMixin",
+    "PortalDestinationTooltipMixin",
+    "CombatWandDiscountMixin",
+    "PaladinDispelMixin",
+    "NetheriteSwordSpellMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
     "LifeSenseGlowMixin",
-    "LifeSenseRenderMixin"
+    "LifeSenseRenderMixin",
+    "EquippedBookScreenMixin",
+    "EquippedBookHandMixin",
+    "EquippedBookQuickKeyMixin",
+    "OffhandSpellbookKeysMixin"
   ]
 }

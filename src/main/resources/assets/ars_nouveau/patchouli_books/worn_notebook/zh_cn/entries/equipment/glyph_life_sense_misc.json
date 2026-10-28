@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_life_sense",
+  "name": "item.ars_misc.glyph_life_sense",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_life_sense",
+      "text": "ars_misc.glyph_desc.glyph_life_sense"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_life_sense.recipe"
+    }
+  ]
+}

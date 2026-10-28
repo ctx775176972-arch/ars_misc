@@ -4,8 +4,9 @@ license="MIT"
 
 [[mods]]
 modId="ars_misc"
-version="0.0.1"
+version="0.1.0"
 displayName="Ars Misc"
+logoFile="logo.png"
 description='''Ars Nouveau gathering, combat, and spell utility accessories.'''
 
 [[dependencies.ars_misc]]
@@ -43,5 +44,12 @@ side="BOTH"
 modId="sauce"
 type="required"
 versionRange="[0.0.62]"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.ars_misc]]
+modId="geckolib"
+type="required"
+versionRange="[4.9.3,)"
 ordering="AFTER"
 side="BOTH"

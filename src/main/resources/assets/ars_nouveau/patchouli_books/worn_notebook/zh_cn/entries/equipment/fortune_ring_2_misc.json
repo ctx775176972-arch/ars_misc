@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_items",
+  "icon": "ars_misc:fortune_ring_2",
+  "name": "item.ars_misc.fortune_ring_2",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:fortune_ring_2",
+      "text": "documentation.ars_misc.fortune_ring_2.summary"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:fortune_ring_2"
+    }
+  ]
+}

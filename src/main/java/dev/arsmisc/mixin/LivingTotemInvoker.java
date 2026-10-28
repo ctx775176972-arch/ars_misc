@@ -9,4 +9,6 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface LivingTotemInvoker {
     @Invoker("checkTotemDeathProtection")
     boolean arsMisc$tryTotem(DamageSource source);
+    @org.spongepowered.asm.mixin.gen.Accessor("dead")
+    void arsMisc$setDead(boolean dead);
 }

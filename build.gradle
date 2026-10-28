@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'dev.arsmisc'
-version = '0.0.1'
+version = '0.1.0'
 base.archivesName = 'ars_misc'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -41,6 +41,8 @@ repositories {
 
 dependencies {
     implementation files('libs/ars_nouveau-1.21.1-5.13.3.jar')
+    compileOnly files('libs/nuggets-neoforge-1.21.1-1.1.0.48.jar')
+    compileOnly files('libs/jei-1.21.1-neoforge-19.70.0.458.jar')
     implementation files('libs/curios-neoforge-9.5.1+1.21.1.jar')
     implementation files('libs/geckolib-neoforge-1.21.1-4.9.3.jar')
     implementation('com.alexthw.sauce:sauce-1.21.1:0.0.62') { transitive = false }
@@ -65,5 +67,46 @@ neoForge {
             type = 'gameTestServer'
             systemProperty 'neoforge.enabledGameTestNamespaces', 'ars_misc,neoforge'
         }
+    }
+}
+// Optional integration-test runtime; never bundled or required by the released mod.
+if (providers.gradleProperty('ironTestMods').isPresent()) {
+    dependencies {
+        runtimeOnly fileTree(dir: providers.gradleProperty('ironTestMods').get(), includes: [
+            'irons_spellbooks-*.jar', 'irons_lib-*.jar', 'player-animation-lib-forge-*.jar'
+        ])
+    }
+}
+// Optional runtime for checking the installed relic's native Curios callbacks.
+if (providers.gradleProperty('enigmaticTestMods').isPresent()) {
+    dependencies {
+        runtimeOnly fileTree(dir: providers.gradleProperty('enigmaticTestMods').get(), includes: [
+            'enigmaticlegacyplus-*.jar', 'caelus-neoforge-*.jar', 'Patchouli-*.jar'
+        ])
+    }
+}
+// Optional integration-test runtime for Ars Additions loot injection.
+if (providers.gradleProperty('additionsTestMods').isPresent()) {
+    dependencies {
+        runtimeOnly fileTree(dir: providers.gradleProperty('additionsTestMods').get(), includes: [
+            'ars_additions-*.jar'
+        ])
+    }
+}
+// Optional integration runtime for native Otherworld harvesting and Third Eye.
+if (providers.gradleProperty('occultismTestMods').isPresent()) {
+    dependencies {
+        runtimeOnly fileTree(dir: providers.gradleProperty('occultismTestMods').get(), includes: [
+            'occultism-*.jar', 'modonomicon-*.jar', 'SmartBrainLib-*.jar'
+        ])
+    }
+}
+
+// Optional integration runtime for the installed Apotheosis combat attributes.
+if (providers.gradleProperty('apothTestMods').isPresent()) {
+    dependencies {
+        runtimeOnly fileTree(dir: providers.gradleProperty('apothTestMods').get(), includes: [
+            'ApothicAttributes-*.jar', 'Apotheosis-*.jar', 'Placebo-*.jar'
+        ])
     }
 }

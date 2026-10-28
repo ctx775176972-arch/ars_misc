@@ -1,0 +1,10 @@
+{
+  "parent": "ars_nouveau:item/wand",
+  "display": {
+    "gui": {
+      "rotation": [80, -45, -50],
+      "translation": [-2, 2, 0],
+      "scale": [-1, 1, 1]
+    }
+  }
+}

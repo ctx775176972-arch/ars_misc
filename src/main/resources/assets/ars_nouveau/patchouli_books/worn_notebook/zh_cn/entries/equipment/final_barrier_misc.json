@@ -1,0 +1,24 @@
+{
+  "category": "ars_nouveau:ars_misc_casting",
+  "icon": "ars_misc:final_barrier",
+  "name": "item.ars_misc.final_barrier",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:final_barrier",
+      "text": "documentation.ars_misc.final_barrier.summary"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.final_barrier.defense"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.final_barrier.cooldown"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:final_barrier"
+    }
+  ]
+}

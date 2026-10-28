@@ -37,7 +37,6 @@ public final class CriticalNecklaceItem extends ArsNouveauCurio {
     @Override public void appendHoverText(ItemStack stack, TooltipContext context,
             List<Component> lines, TooltipFlag flag) {
         super.appendHoverText(stack, context, lines, flag);
-        lines.add(Component.translatable("tooltip.ars_misc.critical_necklace").withStyle(ChatFormatting.GRAY));
-        lines.add(Component.translatable("tooltip.ars_misc.critical_necklace.damage_buff").withStyle(ChatFormatting.BLUE));
+        lines.add(Component.translatable("tooltip.ars_misc.critical_necklace.mana_power").withStyle(ChatFormatting.GRAY));
     }
 }

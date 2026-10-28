@@ -1,14 +1,12 @@
 package dev.arsmisc;
 
 import com.hollingsworth.arsnouveau.api.spell.*;
-import com.hollingsworth.arsnouveau.common.spell.effect.EffectHarm;
 import com.hollingsworth.arsnouveau.common.spell.method.MethodSelf;
 import net.minecraft.gametest.framework.*;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.gametest.*;
-import top.theillusivec4.curios.api.CuriosApi;
 
 @GameTestHolder("ars_misc")
 @PrefixGameTestTemplate(false)
@@ -34,21 +32,28 @@ public final class DecayGameTests {
     }
 
     @GameTest(template="empty", templateNamespace="ars_misc")
-    public static void equippedSpellHitAppliesDecay(GameTestHelper helper) {
-        var player=helper.makeMockPlayer(net.minecraft.world.level.GameType.SURVIVAL);
-        var context=SpellContext.fromEntity(new Spell(MethodSelf.INSTANCE,EffectHarm.INSTANCE),player,ItemStack.EMPTY);
-        var resolver=new SpellResolver(context);
-        var unmarked=helper.spawnWithNoFreeWill(EntityType.COW,1,2,1);
-        EffectHarm.INSTANCE.attemptDamage(helper.getLevel(),player,new SpellStats.Builder().build(),context,resolver,
-            unmarked,EffectHarm.INSTANCE.buildDamageSource(helper.getLevel(),player),1);
-        helper.assertTrue(!unmarked.hasEffect(ArsMiscMod.DECAY), "Unequipped hit applied decay");
-        CuriosApi.getCuriosInventory(player).orElseThrow().setEquippedCurio("ring",0,ArsMiscMod.DECAY_RING.get().getDefaultInstance());
-        var marked=helper.spawnWithNoFreeWill(EntityType.COW,2,2,1);
-        EffectHarm.INSTANCE.attemptDamage(helper.getLevel(),player,new SpellStats.Builder().build(),context,resolver,
-            marked,EffectHarm.INSTANCE.buildDamageSource(helper.getLevel(),player),1);
-        var effect=marked.getEffect(ArsMiscMod.DECAY);
-        helper.assertTrue(effect!=null && effect.getDuration()==600,"Equipped spell hit did not apply 30s decay");
+    public static void retiredDecayRingIsNotRegistered(GameTestHelper helper) {
+        helper.assertTrue(!net.minecraft.core.registries.BuiltInRegistries.ITEM.containsKey(
+                net.minecraft.resources.ResourceLocation.parse("ars_misc:decay_ring")),
+                "Retired decay ring is still registered");
         helper.succeed();
+    }
+    @GameTest(template="empty", templateNamespace="ars_misc")
+    public static void decayGlyphRequiresWitherAndKeepsEqualHealingConversion(GameTestHelper h) {
+        var player=h.makeMockPlayer(net.minecraft.world.level.GameType.SURVIVAL);
+        var target=h.spawnWithNoFreeWill(EntityType.COW,1,2,1);target.setHealth(8);
+        var spell=new Spell(MethodSelf.INSTANCE,EffectDecay.INSTANCE);var context=SpellContext.fromEntity(spell,player,ItemStack.EMPTY);
+        var resolver=new SpellResolver(context);var stats=new SpellStats.Builder().build();
+        EffectDecay.INSTANCE.onResolveEntity(new net.minecraft.world.phys.EntityHitResult(target),h.getLevel(),player,stats,context,resolver);
+        h.assertTrue(!target.hasEffect(ArsMiscMod.DECAY),"Glyph marked a target without Wither");
+        target.addEffect(new MobEffectInstance(net.minecraft.world.effect.MobEffects.WITHER,600,0));
+        EffectDecay.INSTANCE.onResolveEntity(new net.minecraft.world.phys.EntityHitResult(target),h.getLevel(),player,stats,context,resolver);
+        var decay=target.getEffect(ArsMiscMod.DECAY);
+        h.assertTrue(decay!=null&&decay.getDuration()==600,"Glyph did not apply 30 seconds of decay");
+        target.removeEffect(net.minecraft.world.effect.MobEffects.WITHER);target.heal(3);
+        h.assertTrue(target.getHealth()==5,"Existing decay lost equal healing conversion after Wither was removed");
+        h.assertTrue(EffectDecay.INSTANCE.getDefaultManaCost()==100&&EffectDecay.INSTANCE.defaultTier()==SpellTier.THREE,"Wrong glyph cost/tier");
+        h.succeed();
     }
     @GameTest(template="empty", templateNamespace="ars_misc", timeoutTicks=80)
     public static void regenerationAndExpiration(GameTestHelper helper) {

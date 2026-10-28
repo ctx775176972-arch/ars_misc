@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_regeneration",
+  "name": "item.ars_misc.glyph_regeneration",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_regeneration",
+      "text": "ars_misc.glyph_desc.glyph_regeneration"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_regeneration.recipe"
+    }
+  ]
+}

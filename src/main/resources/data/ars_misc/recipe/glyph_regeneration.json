@@ -1,0 +1,13 @@
+{
+  "type": "ars_nouveau:glyph",
+  "exp": 55,
+  "inputs": [
+    {"item": "ars_nouveau:abjuration_essence"},
+    {"item": "minecraft:golden_apple"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:ghast_tear"},
+    {"item": "minecraft:ghast_tear"}
+  ],
+  "output": {"count": 1, "id": "ars_misc:glyph_regeneration"}
+}

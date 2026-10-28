@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_threads",
+  "icon": "ars_misc:thread_sturdy",
+  "name": "item.ars_misc.thread_sturdy",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:thread_sturdy",
+      "text": "ars_misc.perk_desc.thread_sturdy"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:thread_sturdy"
+    }
+  ]
+}

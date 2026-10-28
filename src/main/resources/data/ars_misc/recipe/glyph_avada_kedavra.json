@@ -1,0 +1,40 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "ars_misc:glyph_recipe_enabled",
+      "glyph": "avada_kedavra"
+    }
+  ],
+  "type": "ars_nouveau:glyph",
+  "exp": 55,
+  "inputs": [
+    {
+      "tag": "sauce:anima_essence"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:nether_star"
+    },
+    {
+      "item": "minecraft:nether_star"
+    }
+  ],
+  "output": {
+    "count": 1,
+    "id": "ars_misc:glyph_avada_kedavra"
+  }
+}

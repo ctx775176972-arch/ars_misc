@@ -1,0 +1,11 @@
+{
+  "type": "ars_nouveau:glyph",
+  "exp": 55,
+  "inputs": [
+    {"item": "ars_nouveau:abjuration_essence"},
+    {"item": "ars_nouveau:source_gem_block"},
+    {"item": "ars_nouveau:source_gem_block"},
+    {"item": "ars_nouveau:source_gem_block"}
+  ],
+  "output": {"count": 1, "id": "ars_misc:glyph_crystal_shield"}
+}

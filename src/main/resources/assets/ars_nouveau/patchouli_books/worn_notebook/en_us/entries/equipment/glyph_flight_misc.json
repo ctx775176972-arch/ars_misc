@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_flight",
+  "name": "item.ars_misc.glyph_flight",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_flight",
+      "text": "ars_misc.glyph_desc.glyph_flight"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_flight.recipe"
+    }
+  ]
+}

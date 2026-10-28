@@ -1,0 +1,10 @@
+{
+  "criteria": {
+    "has_wand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {"items": [{"items": "ars_nouveau:wand"}]}
+    }
+  },
+  "requirements": [["has_wand"]],
+  "rewards": {"recipes": ["ars_misc:combat_wand"]}
+}

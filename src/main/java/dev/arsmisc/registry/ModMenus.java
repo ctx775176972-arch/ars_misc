@@ -13,5 +13,7 @@ public final class ModMenus {
     private static final DeferredRegister<MenuType<?>> MENUS = DeferredRegister.create(Registries.MENU, ArsMiscMod.MOD_ID);
     public static final DeferredHolder<MenuType<?>, MenuType<EnchantersPocketWatchMenu>> ENCHANTERS_POCKET_WATCH =
             MENUS.register("enchanters_pocket_watch", () -> IMenuTypeExtension.create(EnchantersPocketWatchMenu::new));
+    public static final DeferredHolder<MenuType<?>, MenuType<dev.arsmisc.menu.EnchantersFieldMenu>> ENCHANTERS_FIELD =
+            MENUS.register("enchanters_field", () -> IMenuTypeExtension.create(dev.arsmisc.menu.EnchantersFieldMenu::new));
     public static void register(IEventBus bus) { MENUS.register(bus); }
 }

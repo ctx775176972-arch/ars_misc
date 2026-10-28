@@ -64,6 +64,6 @@ public final class EffectSacrificialShield extends AbstractEffect implements IPo
     @Override public int getBaseDuration() { return POTION_TIME == null ? 60 : POTION_TIME.get(); }
     @Override public int getExtendTimeDuration() { return EXTEND_TIME == null ? 15 : EXTEND_TIME.get(); }
     @Override public String getBookDescription() {
-        return "Costs 2 real health to grant Absorption II for 60 seconds. Each Amplify adds two levels and costs 2 more health, up to Absorption X. Every cast replaces and refills the effect. The health cost can kill the caster and can trigger a held vanilla Totem. Extend Time adds 15 seconds without increasing the health cost.";
+        return "Grants Absorption to the target at the cost of the caster's health. Warning: Amplify increases the health cost, which can kill the caster!";
     }
 }

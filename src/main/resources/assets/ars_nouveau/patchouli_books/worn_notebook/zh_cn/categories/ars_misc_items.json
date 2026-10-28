@@ -1,0 +1,7 @@
+{
+  "name": "documentation.ars_misc.category.items",
+  "description": "",
+  "icon": "ars_misc:fortune_ring_2",
+  "sortnum": 100,
+  "parent": "ars_nouveau:equipment"
+}

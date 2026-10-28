@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_soul_harvest",
+  "name": "item.ars_misc.glyph_soul_harvest",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_soul_harvest",
+      "text": "ars_misc.glyph_desc.glyph_soul_harvest"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_soul_harvest.recipe"
+    }
+  ]
+}

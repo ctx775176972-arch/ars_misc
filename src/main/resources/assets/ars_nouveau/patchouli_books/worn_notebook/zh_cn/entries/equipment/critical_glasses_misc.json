@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_items",
+  "icon": "ars_misc:critical_glasses",
+  "name": "item.ars_misc.critical_glasses",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:critical_glasses",
+      "text": "documentation.ars_misc.critical_glasses.summary"
+    },
+    {
+      "type": "ars_nouveau:apparatus_recipe",
+      "recipe": "ars_misc:critical_glasses"
+    }
+  ]
+}

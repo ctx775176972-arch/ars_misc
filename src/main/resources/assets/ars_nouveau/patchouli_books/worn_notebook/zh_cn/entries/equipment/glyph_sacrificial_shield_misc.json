@@ -1,0 +1,16 @@
+{
+  "category": "ars_nouveau:ars_misc_glyphs",
+  "icon": "ars_misc:glyph_sacrificial_shield",
+  "name": "item.ars_misc.glyph_sacrificial_shield",
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "ars_misc:glyph_sacrificial_shield",
+      "text": "ars_misc.glyph_desc.glyph_sacrificial_shield"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "documentation.ars_misc.glyph_sacrificial_shield.recipe"
+    }
+  ]
+}
